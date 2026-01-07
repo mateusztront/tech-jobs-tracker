@@ -81,7 +81,6 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add data/jobs.db
-          git add logs/*.log
 
           # Create commit message with stats
           COMMIT_MSG="chore: update job data - $(date +'%Y-%m-%d')
