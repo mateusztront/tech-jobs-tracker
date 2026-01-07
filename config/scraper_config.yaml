@@ -1,0 +1,31 @@
+# Scraper configuration for NoFluffJobs
+
+scraper:
+  base_url: "https://nofluffjobs.com"
+  search_url: "https://nofluffjobs.com/pl/jobs"
+  user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+  timeout_seconds: 30
+  verify_ssl: true
+
+rate_limiting:
+  min_delay_seconds: 2
+  max_delay_seconds: 5
+  requests_per_minute: 20
+  retry_attempts: 3
+  retry_backoff: 2  # exponential backoff multiplier
+
+scraping:
+  max_pages: 100
+  max_jobs_per_run: 1000
+
+filters:
+  # Leave empty to scrape all
+  categories: []
+  locations: []
+  seniority_levels: []
+
+parsing:
+  extract_skills: true
+  extract_salary: true
+  extract_description: true
+  extract_requirements: true

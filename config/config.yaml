@@ -1,0 +1,20 @@
+# Main configuration file for IT Job Market Dashboard
+
+database:
+  path: "data/jobs.db"
+  backup_enabled: false
+  backup_frequency: "weekly"
+
+logging:
+  level: "INFO"
+  file: "logs/app.log"
+  max_size_mb: 10
+  backup_count: 5
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+dashboard:
+  title: "NoFluffJobs IT Market Dashboard"
+  auto_refresh_minutes: 60
+  default_timeframe: 30  # days
+  page_icon: "📊"
+  layout: "wide"

@@ -1,0 +1,65 @@
+name: Update Dashboard Statistics
+
+on:
+  # Run after daily scrape completes
+  workflow_run:
+    workflows: ["Daily Job Scraper"]
+    types:
+      - completed
+
+  # Allow manual triggering
+  workflow_dispatch:
+
+jobs:
+  update-readme-stats:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Generate statistics
+        id: stats
+        run: |
+          python scripts/show_db_info.py > stats.txt
+          cat stats.txt
+
+      - name: Update README with stats
+        run: |
+          # Create or update statistics badge section in README
+          if ! grep -q "## Latest Statistics" README.md; then
+            echo "" >> README.md
+            echo "## Latest Statistics" >> README.md
+            echo "" >> README.md
+            echo "Last updated: $(date +'%Y-%m-%d %H:%M UTC')" >> README.md
+            echo "" >> README.md
+            echo "\`\`\`" >> README.md
+            cat stats.txt >> README.md
+            echo "\`\`\`" >> README.md
+          fi
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          if ! git diff --quiet README.md; then
+            git add README.md
+            git commit -m "docs: update statistics - $(date +'%Y-%m-%d')"
+            git push
+          else
+            echo "No changes to commit"
+          fi

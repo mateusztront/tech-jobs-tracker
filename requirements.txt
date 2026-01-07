@@ -1,0 +1,21 @@
+# Web scraping
+requests==2.31.0
+beautifulsoup4==4.12.3
+lxml==5.1.0
+
+# Data processing
+pandas==2.2.0
+python-dateutil==2.8.2
+
+# Dashboard
+streamlit==1.31.0
+plotly==5.18.0
+
+# Configuration
+pyyaml==6.0.1
+
+# Testing
+pytest==8.0.0
+
+# Optional: Use if BeautifulSoup is not sufficient
+selenium==4.17.2
