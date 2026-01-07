@@ -197,3 +197,38 @@ This project is for educational purposes. Always respect website terms of servic
 ## Author
 
 Data Engineer with 4 years of experience in Python and SQL
+
+## Latest Statistics
+
+Last updated: 2026-01-07 21:31 UTC
+
+```
+============================================================
+DATABASE INFORMATION
+============================================================
+
+Tables (8):
+  - daily_metrics        (16 rows)
+  - job_postings         (165 rows)
+  - job_snapshots        (177 rows)
+  - job_technologies     (1029 rows)
+  - salaries             (170 rows)
+  - scrape_runs          (4 rows)
+  - sqlite_sequence      (7 rows)
+  - technologies         (42 rows)
+
+Indexes (10):
+  - idx_daily_metrics_date
+  - idx_job_postings_active
+  - idx_job_postings_job_id
+  - idx_job_snapshots_date
+  - idx_job_snapshots_job_id
+  - idx_job_technologies_date
+  - idx_job_technologies_job_id
+  - idx_salaries_date
+  - idx_salaries_job_id
+  - idx_technologies_name
+
+Last successful scrape: 2026-01-07 21:31:05
+============================================================
+```
